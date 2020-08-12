@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react"
 import app from "../../firebase"
 import { AuthContext } from "../../contexts/Auth"
+import { Link } from "react-router-dom"
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext)
-  console.log(currentUser)
+  // console.log(currentUser)
   const [startTime, setStartTime] = useState<number>(0)
   const [allTimes, setAlltimes] = useState<number[]>([])
   const [isGameStared, setIsGameStarted] = useState<boolean>(false)
@@ -25,9 +26,9 @@ const Home: React.FC<Props> = () => {
     const nowInMs = new Date().getTime()
     setIsGameStarted(false)
     const difference = nowInMs - startTime
-    console.log({ start: startTime })
-    console.log({ end: nowInMs })
-    console.log({ difference: nowInMs - startTime })
+    // console.log({ start: startTime })
+    // console.log({ end: nowInMs })
+    // console.log({ difference: nowInMs - startTime })
     setAlltimes([...allTimes, difference])
   }
 
@@ -38,6 +39,9 @@ const Home: React.FC<Props> = () => {
   return (
     <div>
       <button onClick={SignOut}>SignOut</button>
+      <Link to="/dashboard">Go to dashboard</Link>
+      <Link to="/login">Go to login</Link>
+      <Link to="/signup">Go to signup</Link>
       <h1>This is the home page!</h1>
       <h2>When square turns green, click!</h2>
       <div

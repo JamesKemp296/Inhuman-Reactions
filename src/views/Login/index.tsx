@@ -14,7 +14,7 @@ const Login: React.FC<Props> = ({ history }) => {
       const { email, password } = event.target.elements
       try {
         await app.auth().signInWithEmailAndPassword(email.value, password.value)
-        history.push("/")
+        history.push("/dashboard")
       } catch (error) {
         alert(error)
       }

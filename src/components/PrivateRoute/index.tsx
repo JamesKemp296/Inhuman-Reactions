@@ -4,24 +4,26 @@ import { AuthContext } from "../../contexts/Auth"
 
 interface Props {
   component: any
-  rest: any
+  path: any
+  rest?: any
 }
 
 const PrivateRoute: React.FC<Props> = ({
   component: RouteComponent,
+  path,
   ...rest
-}): any => {
+}) => {
   const { currentUser } = useContext(AuthContext)
   return (
     <Route
       {...rest}
-      render={(routeProps: any): any => {
+      render={(routeProps) =>
         !!currentUser ? (
-          <RouteComponent {...routeProps} />
+          <RouteComponent {...routeProps} to={path} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to={"/login"} />
         )
-      }}
+      }
     />
   )
 }
