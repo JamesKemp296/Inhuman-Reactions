@@ -1,8 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import app from "../../firebase"
+import { AuthContext } from "../../contexts/Auth"
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
+  const { currentUser } = useContext(AuthContext)
+  console.log(currentUser)
   const [startTime, setStartTime] = useState<number>(0)
   const [allTimes, setAlltimes] = useState<number[]>([])
   const [isGameStared, setIsGameStarted] = useState<boolean>(false)
@@ -27,8 +31,13 @@ const Home: React.FC<Props> = () => {
     setAlltimes([...allTimes, difference])
   }
 
+  const SignOut = () => {
+    app.auth().signOut()
+  }
+
   return (
     <div>
+      <button onClick={SignOut}>SignOut</button>
       <h1>This is the home page!</h1>
       <h2>When square turns green, click!</h2>
       <div
