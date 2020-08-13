@@ -1,12 +1,8 @@
-import React, { useState, useContext } from "react"
-import app from "../../firebase"
-import { AuthContext } from "../../contexts/Auth"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
-  const { currentUser } = useContext(AuthContext)
   // console.log(currentUser)
   const [startTime, setStartTime] = useState<number>(0)
   const [allTimes, setAlltimes] = useState<number[]>([])
@@ -32,16 +28,8 @@ const Home: React.FC<Props> = () => {
     setAlltimes([...allTimes, difference])
   }
 
-  const SignOut = () => {
-    app.auth().signOut()
-  }
-
   return (
     <div>
-      <button onClick={SignOut}>SignOut</button>
-      <Link to="/dashboard">Go to dashboard</Link>
-      <Link to="/login">Go to login</Link>
-      <Link to="/signup">Go to signup</Link>
       <h1>This is the home page!</h1>
       <h2>When square turns green, click!</h2>
       <div
