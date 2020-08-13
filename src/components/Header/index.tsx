@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useCallback } from "react"
 import { Link } from "react-router-dom"
 import app from "../../firebase"
 
@@ -23,11 +23,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     navLink: {
       color: "black",
-      padding: 10,
+      padding: "0px 24px",
       textDecoration: "none",
     },
     toolbar: {
-      maxWidth: 1010,
+      maxWidth: 1280,
       width: "100%",
       margin: "0px auto",
       display: "flex",
@@ -44,7 +44,7 @@ const Header: React.FC<Props> = () => {
     app.auth().signOut()
   }
 
-  const renderNavActions = (): React.ReactNode => {
+  const renderNavActions = useCallback((): React.ReactNode => {
     if (currentUser) {
       return <Button onClick={SignOut}>Log Out</Button>
     }
@@ -68,9 +68,9 @@ const Header: React.FC<Props> = () => {
         </Typography>
       </Box>
     )
-  }
+  }, [currentUser])
 
-  const renderDashboardLink = (): React.ReactNode => {
+  const renderDashboardLink = useCallback((): React.ReactNode => {
     if (!currentUser) return null
     return (
       <Typography
@@ -82,7 +82,7 @@ const Header: React.FC<Props> = () => {
         Dashboard
       </Typography>
     )
-  }
+  }, [currentUser])
 
   return (
     <AppBar position="static" className={classes.root}>

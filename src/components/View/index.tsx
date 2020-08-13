@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       height: "100%",
-      maxWidth: 1010,
       width: "100%",
-      margin: "0px auto",
+      // maxWidth: 1010,
+      // margin: "0px auto",
     },
   }),
 )

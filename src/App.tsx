@@ -6,6 +6,7 @@ import Home from "./views/Home"
 import Login from "./views/Login"
 import SignUp from "./views/SignUp"
 import Dashboard from "./views/Dashboard"
+import ReactionTimeTest from "./views/ReactionTimeTest"
 
 // Componetns
 import View from "./components/View"
@@ -27,6 +28,11 @@ const App: React.FC<Props> = () => {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={SignUp} />
+            <Route
+              exact
+              path="/tests/reaction-time"
+              component={ReactionTimeTest}
+            />
             <PrivateRoute component={Dashboard} path="/dashboard" />
           </Switch>
         </View>

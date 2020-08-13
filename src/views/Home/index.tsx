@@ -1,59 +1,38 @@
 import React, { useState } from "react"
+import { BLUE } from "../../utils"
+
+// Material UI
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import Box from "@material-ui/core/Box"
+import Typography from "@material-ui/core/Typography"
+import Container from "@material-ui/core/Container"
+
+// Components
+import GameArea from "../../components/GameArea"
 
 interface Props {}
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      // backgroundColor: "white",
+    },
+  }),
+)
 
 const Home: React.FC<Props> = () => {
-  // console.log(currentUser)
-  const [startTime, setStartTime] = useState<number>(0)
-  const [allTimes, setAlltimes] = useState<number[]>([])
-  const [isGameStared, setIsGameStarted] = useState<boolean>(false)
-  const blockColor = isGameStared ? "green" : "red"
-
-  const handleGameStartClick = () => {
-    setTimeout(function () {
-      setIsGameStarted(true)
-      const nowInMs = new Date().getTime()
-      setStartTime(nowInMs)
-    }, 3000)
-  }
-
-  const handleGameClick = () => {
-    if (!isGameStared) return
-    const nowInMs = new Date().getTime()
-    setIsGameStarted(false)
-    const difference = nowInMs - startTime
-    // console.log({ start: startTime })
-    // console.log({ end: nowInMs })
-    // console.log({ difference: nowInMs - startTime })
-    setAlltimes([...allTimes, difference])
-  }
+  const classes = useStyles()
 
   return (
-    <div>
-      <h1>This is the home page!</h1>
-      <h2>When square turns green, click!</h2>
-      <div
-        style={{
-          height: 300,
-          width: 500,
-          backgroundColor: blockColor,
-          marginLeft: "auto",
-          marginRight: "auto",
-          display: "block",
-          marginBottom: 50,
-        }}
-      ></div>
-      <button onClick={handleGameStartClick}>Click to start Game</button>
-      <button onClick={handleGameClick}>Click When Turns Green!</button>
-
-      {allTimes.length > 0 && (
-        <ul>
-          {allTimes.map((time, index) => (
-            <li key={index}>{time}</li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <Box className={classes.root}>
+      <GameArea
+        title="Inhuman Reactions"
+        subTitle="Compare your abilities to other humans. Are you inhuman?"
+      />
+      <Container maxWidth="lg">
+        <Typography>THIS IS THE GOME PAGE WITHAS AFSKNASDnasd asdk</Typography>
+      </Container>
+    </Box>
   )
 }
 
