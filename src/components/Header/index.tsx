@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import app from "../../firebase"
 
 // Material UI
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
@@ -15,26 +15,25 @@ import { AuthContext } from "../../contexts/Auth"
 
 interface Props {}
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      backgroundColor: "white",
-    },
-    navLink: {
-      color: "black",
-      padding: "0px 24px",
-      textDecoration: "none",
-    },
-    toolbar: {
-      maxWidth: 960,
-      width: "100%",
-      margin: "0px auto",
-      display: "flex",
-      justifyContent: "space-between",
-    },
-  }),
-)
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: "white",
+  },
+  navLink: {
+    fontSize: 20,
+    textTransform: "capitalize",
+    borderRadius: 0,
+  },
+  toolbar: {
+    maxWidth: 960,
+    width: "100%",
+    margin: "0px auto",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+  },
+}))
 
 const Header: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext)
@@ -46,26 +45,20 @@ const Header: React.FC<Props> = () => {
 
   const renderNavActions = useCallback((): React.ReactNode => {
     if (currentUser) {
-      return <Button onClick={SignOut}>Log Out</Button>
+      return (
+        <Button onClick={SignOut} className={classes.navLink}>
+          Log Out
+        </Button>
+      )
     }
     return (
       <Box display="flex">
-        <Typography
-          variant="h6"
-          className={classes.navLink}
-          component={Link}
-          to="/signup"
-        >
+        <Button className={classes.navLink} component={Link} to="/signup">
           Sign Up
-        </Typography>
-        <Typography
-          variant="h6"
-          className={classes.navLink}
-          component={Link}
-          to="/login"
-        >
+        </Button>
+        <Button className={classes.navLink} component={Link} to="/login">
           Login
-        </Typography>
+        </Button>
       </Box>
     )
   }, [currentUser])
@@ -73,14 +66,9 @@ const Header: React.FC<Props> = () => {
   const renderDashboardLink = useCallback((): React.ReactNode => {
     if (!currentUser) return null
     return (
-      <Typography
-        variant="h6"
-        className={classes.navLink}
-        component={Link}
-        to="/dashboard"
-      >
+      <Button className={classes.navLink} component={Link} to="/dashboard">
         Dashboard
-      </Typography>
+      </Button>
     )
   }, [currentUser])
 
@@ -88,14 +76,9 @@ const Header: React.FC<Props> = () => {
     <AppBar position="static" className={classes.root}>
       <Toolbar className={classes.toolbar}>
         <Box display="flex">
-          <Typography
-            variant="h6"
-            className={classes.navLink}
-            component={Link}
-            to="/"
-          >
+          <Button className={classes.navLink} component={Link} to="/">
             Inhuman Reactions
-          </Typography>
+          </Button>
           {renderDashboardLink()}
         </Box>
         {renderNavActions()}

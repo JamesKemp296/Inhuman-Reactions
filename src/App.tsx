@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { OFF_WHTIE } from "./utils"
+import { OFF_WHTIE, BLUE } from "./utils"
 
 // Material UI
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
@@ -27,6 +27,9 @@ const theme = createMuiTheme({
   palette: {
     background: {
       default: OFF_WHTIE,
+    },
+    primary: {
+      main: BLUE,
     },
   },
 })
