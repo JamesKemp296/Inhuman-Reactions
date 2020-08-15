@@ -2,6 +2,9 @@ import React, { useCallback } from "react"
 import { withRouter } from "react-router"
 import app from "../../firebase"
 
+// Material UI
+import Container from "@material-ui/core/Container"
+
 interface Props {
   history: any
 }
@@ -24,7 +27,7 @@ const SignUp: React.FC<Props> = ({ history }) => {
   )
 
   return (
-    <div>
+    <Container maxWidth="md">
       <h1>Sign up</h1>
       <form onSubmit={handleSignUp}>
         <label>
@@ -37,7 +40,7 @@ const SignUp: React.FC<Props> = ({ history }) => {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-    </div>
+    </Container>
   )
 }
 

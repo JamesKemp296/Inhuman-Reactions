@@ -3,6 +3,9 @@ import { withRouter, Redirect } from "react-router"
 import app from "../../firebase"
 import { AuthContext } from "../../contexts/Auth"
 
+// Material UI
+import Container from "@material-ui/core/Container"
+
 interface Props {
   history: any
 }
@@ -29,7 +32,7 @@ const Login: React.FC<Props> = ({ history }) => {
   }
 
   return (
-    <div>
+    <Container maxWidth="md">
       <h1>Log in</h1>
       <form onSubmit={handleLogin}>
         <label>
@@ -42,7 +45,7 @@ const Login: React.FC<Props> = ({ history }) => {
         </label>
         <button type="submit">Log in</button>
       </form>
-    </div>
+    </Container>
   )
 }
 
