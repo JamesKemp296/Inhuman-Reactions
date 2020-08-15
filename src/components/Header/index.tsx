@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textDecoration: "none",
     },
     toolbar: {
-      maxWidth: 1280,
+      maxWidth: 960,
       width: "100%",
       margin: "0px auto",
       display: "flex",

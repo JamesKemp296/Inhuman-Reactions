@@ -1,5 +1,10 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { OFF_WHTIE } from "./utils"
+
+// Material UI
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { CssBaseline } from "@material-ui/core"
 
 // Views
 import Home from "./views/Home"
@@ -18,25 +23,36 @@ import { AuthProvider } from "./contexts/Auth"
 
 interface Props {}
 
+const theme = createMuiTheme({
+  palette: {
+    background: {
+      default: OFF_WHTIE,
+    },
+  },
+})
+
 const App: React.FC<Props> = () => {
   return (
     <AuthProvider>
-      <Router>
-        <Header />
-        <View>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={SignUp} />
-            <Route
-              exact
-              path="/tests/reaction-time"
-              component={ReactionTimeTest}
-            />
-            <PrivateRoute component={Dashboard} path="/dashboard" />
-          </Switch>
-        </View>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <Header />
+          <View>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={SignUp} />
+              <Route
+                exact
+                path="/tests/reaction-time"
+                component={ReactionTimeTest}
+              />
+              <PrivateRoute component={Dashboard} path="/dashboard" />
+            </Switch>
+          </View>
+        </Router>
+      </ThemeProvider>
     </AuthProvider>
   )
 }
