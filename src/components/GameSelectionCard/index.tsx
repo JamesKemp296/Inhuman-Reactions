@@ -41,6 +41,7 @@ const useStyles = makeStyles({
   actionArea: {
     height: "100%",
     padding: 30,
+    "&:hover": {},
   },
   cardContent: {
     height: "100%",
