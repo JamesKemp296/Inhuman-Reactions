@@ -1,6 +1,5 @@
-import React, { useContext, useCallback, useState } from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import app from "../../firebase"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
@@ -14,10 +13,10 @@ import MenuIcon from "@material-ui/icons/Menu"
 // Components
 import Drawer from "./drawer"
 
-// Context
-import { AuthContext } from "../../contexts/Auth"
-
-interface Props {}
+interface Props {
+  currentUser: any
+  onSignOut: any
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -29,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: 20,
     textTransform: "capitalize",
     borderRadius: 0,
+    textDecoration: "none",
   },
   toolbar: {
     maxWidth: 960,
@@ -44,9 +44,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const MobileHeader: React.FC<Props> = () => {
+const MobileHeader: React.FC<Props> = ({ currentUser, onSignOut }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false)
-  const { currentUser } = useContext(AuthContext)
   const classes = useStyles()
 
   const handleToggleDrawer = (event: any): void => {
@@ -58,10 +57,6 @@ const MobileHeader: React.FC<Props> = () => {
       return
     }
     setIsDrawerOpen(!isDrawerOpen)
-  }
-
-  const SignOut = () => {
-    app.auth().signOut()
   }
 
   return (
@@ -77,7 +72,12 @@ const MobileHeader: React.FC<Props> = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.navLink}>
+          <Typography
+            variant="h6"
+            className={classes.navLink}
+            component={Link}
+            to="/"
+          >
             Inhuman Reactions
           </Typography>
           <Button color="inherit">Login</Button>
@@ -87,6 +87,7 @@ const MobileHeader: React.FC<Props> = () => {
         isDrawerOpen={isDrawerOpen}
         onToggleDrawer={handleToggleDrawer}
         currentUser={currentUser}
+        onSignOut={onSignOut}
       />
     </>
   )

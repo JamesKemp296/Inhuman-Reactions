@@ -1,25 +1,33 @@
-import React from "react"
-// import { Link } from "react-router-dom"
-// import app from "../../firebase"
+import React, { useContext } from "react"
+import app from "../../firebase"
 
-// // Material UI
-// import { makeStyles, Theme } from "@material-ui/core/styles"
-// import AppBar from "@material-ui/core/AppBar"
-// import Toolbar from "@material-ui/core/Toolbar"
-// import Typography from "@material-ui/core/Typography"
-// import Box from "@material-ui/core/Box"
-// import Button from "@material-ui/core/Button"
+// Material UI
+import useMediaQuery from "@material-ui/core/useMediaQuery"
 
 // Components
 import DesktopHeader from "./DesktopHeader"
 import MobileHeader from "./MobileHeader"
 
+// Context
+import { AuthContext } from "../../contexts/Auth"
+
 interface Props {}
 
 const Header: React.FC<Props> = () => {
+  const { currentUser } = useContext(AuthContext)
+  const isSmallScreen = useMediaQuery("(max-width:600px)")
+
+  const handleSignOut = () => {
+    app.auth().signOut()
+  }
+
   return (
     <>
-      <MobileHeader />
+      {isSmallScreen ? (
+        <MobileHeader currentUser={currentUser} onSignOut={handleSignOut} />
+      ) : (
+        <DesktopHeader currentUser={currentUser} onSignOut={handleSignOut} />
+      )}
     </>
   )
 }

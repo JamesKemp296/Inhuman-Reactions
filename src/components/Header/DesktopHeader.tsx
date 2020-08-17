@@ -1,19 +1,17 @@
-import React, { useContext, useCallback } from "react"
+import React, { useCallback } from "react"
 import { Link } from "react-router-dom"
-import app from "../../firebase"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
-import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import Button from "@material-ui/core/Button"
 
-// Context
-import { AuthContext } from "../../contexts/Auth"
-
-interface Props {}
+interface Props {
+  currentUser: any
+  onSignOut: any
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -35,18 +33,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const DesktopHeader: React.FC<Props> = () => {
-  const { currentUser } = useContext(AuthContext)
+const DesktopHeader: React.FC<Props> = ({ currentUser, onSignOut }) => {
   const classes = useStyles()
-
-  const SignOut = () => {
-    app.auth().signOut()
-  }
 
   const renderNavActions = useCallback((): React.ReactNode => {
     if (currentUser) {
       return (
-        <Button onClick={SignOut} className={classes.navLink}>
+        <Button onClick={onSignOut} className={classes.navLink}>
           Log Out
         </Button>
       )

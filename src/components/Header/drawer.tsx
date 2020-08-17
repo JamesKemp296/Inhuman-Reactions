@@ -16,11 +16,15 @@ import Typography from "@material-ui/core/Typography"
 
 // Icons
 import DashboardIcon from "@material-ui/icons/Dashboard"
+import PersonAddIcon from "@material-ui/icons/PersonAdd"
+import PersonIcon from "@material-ui/icons/Person"
+import ExitToAppIcon from "@material-ui/icons/ExitToApp"
 
 interface Props {
   isDrawerOpen: boolean
   onToggleDrawer: any
   currentUser: any
+  onSignOut: any
 }
 
 const useStyles = makeStyles({
@@ -39,42 +43,68 @@ const Drawer: React.FC<Props> = ({
   isDrawerOpen,
   onToggleDrawer,
   currentUser,
+  onSignOut,
 }) => {
   const classes = useStyles()
 
-  const list = () => (
-    <div
-      role="presentation"
-      onClick={onToggleDrawer}
-      onKeyDown={onToggleDrawer}
-    >
-      <List className={classes.navList}>
-        <ListItem button component={Link} to="/">
-          <Typography>Inhuman Reactions</Typography>
-        </ListItem>
-        <Divider />
-        <ListItem button component={Link} to="/dashboard">
+  const renderNavListItems = () => {
+    if (currentUser) {
+      return (
+        <>
+          <ListItem button component={Link} to="/dashboard">
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+          <ListItem button onClick={onSignOut}>
+            <ListItemIcon>
+              <ExitToAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log Out" />
+          </ListItem>
+        </>
+      )
+    }
+    return (
+      <>
+        <ListItem button component={Link} to="/login">
           <ListItemIcon>
-            <DashboardIcon />
+            <PersonIcon />
           </ListItemIcon>
-          <ListItemText primary="Dashboard" />
+          <ListItemText primary="Log In" />
         </ListItem>
-        <Divider />
-      </List>
-    </div>
-  )
+        <ListItem button component={Link} to="/signup">
+          <ListItemIcon>
+            <PersonAddIcon />
+          </ListItemIcon>
+          <ListItemText primary="Sign Up" />
+        </ListItem>
+      </>
+    )
+  }
 
   return (
-    <div>
-      <SwipeableDrawer
-        anchor="left"
-        open={isDrawerOpen}
-        onClose={onToggleDrawer}
-        onOpen={onToggleDrawer}
+    <SwipeableDrawer
+      anchor="left"
+      open={isDrawerOpen}
+      onClose={onToggleDrawer}
+      onOpen={onToggleDrawer}
+    >
+      <div
+        role="presentation"
+        onClick={onToggleDrawer}
+        onKeyDown={onToggleDrawer}
       >
-        {list()}
-      </SwipeableDrawer>
-    </div>
+        <List className={classes.navList}>
+          <ListItem button component={Link} to="/">
+            <Typography>Inhuman Reactions</Typography>
+          </ListItem>
+          <Divider />
+          {renderNavListItems()}
+        </List>
+      </div>
+    </SwipeableDrawer>
   )
 }
 
