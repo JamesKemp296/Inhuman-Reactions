@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   navLink: {
     color: "black",
-    fontSize: 20,
-    textTransform: "capitalize",
+    fontSize: 18,
+    textTransform: "uppercase",
     borderRadius: 0,
     textDecoration: "none",
   },

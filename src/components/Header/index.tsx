@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import app from "../../firebase"
+import { SM_MEDIA_QUERY } from "../../utils"
 
 // Material UI
 import useMediaQuery from "@material-ui/core/useMediaQuery"
@@ -15,7 +16,7 @@ interface Props {}
 
 const Header: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext)
-  const isSmallScreen = useMediaQuery("(max-width:600px)")
+  const isSmallScreen = useMediaQuery(SM_MEDIA_QUERY)
 
   const handleSignOut = () => {
     app.auth().signOut()

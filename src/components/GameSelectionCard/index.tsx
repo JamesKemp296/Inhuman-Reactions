@@ -1,8 +1,9 @@
 import React from "react"
-import { BLUE, Icon, ORANGE } from "../../utils"
+import { Link } from "react-router-dom"
+import { LIGHT_BLUE, Icon, ORANGE, GameLink } from "../../utils"
 
 // Material UI
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardContent from "@material-ui/core/CardContent"
@@ -22,9 +23,10 @@ interface Props {
   subTitle?: string
   icon?: Icon
   isAvailable: boolean
+  link?: GameLink
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "100%",
     height: 250,
@@ -40,7 +42,7 @@ const useStyles = makeStyles({
   },
   actionArea: {
     height: "100%",
-    padding: 30,
+    padding: theme.spacing(3),
     "&:hover": {},
   },
   cardContent: {
@@ -61,15 +63,16 @@ const useStyles = makeStyles({
   },
   icon: {
     fontSize: 70,
-    color: BLUE,
+    color: LIGHT_BLUE,
   },
-})
+}))
 
 const GameSelectionCard: React.FC<Props> = ({
   title,
   subTitle,
   icon,
   isAvailable,
+  link = "/",
 }) => {
   const classes = useStyles()
 
@@ -77,25 +80,18 @@ const GameSelectionCard: React.FC<Props> = ({
     switch (icon) {
       case Icon.Speed:
         return <SpeedIcon className={classes.icon} />
-        break
       case Icon.Target:
         return <AdjustIcon className={classes.icon} />
-        break
       case Icon.Squares:
         return <ViewModuleIcon className={classes.icon} />
-        break
       case Icon.Hearing:
         return <HearingIcon className={classes.icon} />
-        break
       case Icon.Keyboard:
         return <KeyboardIcon className={classes.icon} />
-        break
       case Icon.Numbers:
         return <FormatListNumberedIcon className={classes.icon} />
-        break
       case Icon.Book:
         return <MenuBookIcon className={classes.icon} />
-        break
       default:
         return <AdjustIcon className={classes.icon} />
     }
@@ -103,9 +99,13 @@ const GameSelectionCard: React.FC<Props> = ({
 
   return (
     <Card className={classes.root} variant="elevation" elevation={2}>
-      <CardActionArea className={classes.actionArea} disabled={!isAvailable}>
+      <CardActionArea
+        className={classes.actionArea}
+        disabled={!isAvailable}
+        component={Link}
+        to={link}
+      >
         <CardContent className={classes.cardContent}>
-          {/* <SpeedIcon className={classes.icon} /> */}
           {renderIcon()}
           <Typography variant="h2" className={classes.title}>
             {title}

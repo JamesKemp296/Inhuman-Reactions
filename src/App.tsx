@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { OFF_WHTIE, BLUE } from "./utils"
+import { OFF_WHTIE, BLUE, ORANGE } from "./utils"
 
 // Material UI
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
@@ -31,6 +31,9 @@ const theme = createMuiTheme({
     primary: {
       main: BLUE,
     },
+    secondary: {
+      main: ORANGE,
+    },
   },
 })
 
@@ -46,8 +49,7 @@ const App: React.FC<Props> = () => {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
-              <Route
-                exact
+              <PrivateRoute
                 path="/tests/reaction-time"
                 component={ReactionTimeTest}
               />

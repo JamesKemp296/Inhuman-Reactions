@@ -52,6 +52,7 @@ const Home: React.FC<Props> = () => {
               subTitle={card.subTitle}
               icon={card.icon}
               isAvailable={card.isAvailable}
+              link={card.link}
             />
           ))}
         </Box>

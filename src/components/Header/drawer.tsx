@@ -31,11 +31,19 @@ const useStyles = makeStyles({
   navList: {
     width: 240,
   },
+  title: {
+    fontSize: 18,
+    textTransform: "uppercase",
+  },
   list: {
     width: 320,
   },
   fullList: {
     width: "auto",
+  },
+  navLink: {
+    fontSize: 18,
+    textTransform: "uppercase",
   },
 })
 
@@ -55,13 +63,13 @@ const Drawer: React.FC<Props> = ({
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Dashboard" className={classes.navLink} />
           </ListItem>
           <ListItem button onClick={onSignOut}>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="Log Out" />
+            <ListItemText primary="Log Out" className={classes.navLink} />
           </ListItem>
         </>
       )
@@ -72,13 +80,13 @@ const Drawer: React.FC<Props> = ({
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <ListItemText primary="Log In" />
+          <ListItemText primary="Log In" className={classes.navLink} />
         </ListItem>
         <ListItem button component={Link} to="/signup">
           <ListItemIcon>
             <PersonAddIcon />
           </ListItemIcon>
-          <ListItemText primary="Sign Up" />
+          <ListItemText primary="Sign Up" className={classes.navLink} />
         </ListItem>
       </>
     )
@@ -98,7 +106,10 @@ const Drawer: React.FC<Props> = ({
       >
         <List className={classes.navList}>
           <ListItem button component={Link} to="/">
-            <Typography>Inhuman Reactions</Typography>
+            <Typography variant="h6" className={classes.title}>
+              {" "}
+              Inhuman Reactions
+            </Typography>
           </ListItem>
           <Divider />
           {renderNavListItems()}
