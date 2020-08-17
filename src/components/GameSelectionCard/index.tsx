@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
   },
   title: {
     fontSize: 24,

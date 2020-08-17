@@ -54,8 +54,7 @@ export const cardSelectionArray = [
   },
   {
     title: "Hearing",
-    subTitle:
-      "A test for high frequency hearing loss, the most common form of hearing loss.",
+    subTitle: "A test for high frequency hearing loss, the most common form.",
     icon: Icon.Hearing,
     isAvailable: false,
     link: GameLink.None,
