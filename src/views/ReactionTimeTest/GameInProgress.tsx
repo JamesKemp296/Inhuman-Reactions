@@ -92,7 +92,7 @@ const ReactionTimeTest: React.FC<Props> = ({
     console.log("component loaded")
     setTimeout(function () {
       const nowInMs = new Date().getTime()
-      setGameData({ ...gameData, startTime: nowInMs })
+      setGameData({ ...gameData, startTime: nowInMs, isRoundStarted: true })
     }, 3000)
   }, [])
 

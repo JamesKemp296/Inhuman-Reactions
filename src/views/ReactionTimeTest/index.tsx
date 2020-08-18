@@ -6,7 +6,7 @@ import { BLUE, ReactionTimeGameData } from "../../utils"
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
+import Container from "@material-ui/core/Container"
 
 // Material UI Icons
 import SpeedIcon from "@material-ui/icons/Speed"
@@ -93,11 +93,7 @@ const ReactionTimeTest: React.FC<Props> = () => {
   const { startTime, isGameStarted, isRoundStarted } = gameData
 
   const handleGameStartClick = () => {
-    setGameData({ ...gameData, isGameStarted: true, isRoundStarted: true })
-    setTimeout(function () {
-      const nowInMs = new Date().getTime()
-      setGameData({ ...gameData, startTime: nowInMs })
-    }, 3000)
+    setGameData({ ...gameData, isGameStarted: true })
   }
 
   const handleGameClick = () => {
@@ -110,9 +106,18 @@ const ReactionTimeTest: React.FC<Props> = () => {
     setGameData({
       ...gameData,
       isRoundStarted: false,
+      startTime: 0,
     })
     setAlltimes([...allTimes, difference])
     console.log({ allTimes })
+    if (allTimes.length === 4) {
+      setGameData({ ...gameData, isGameStarted: false })
+      return
+    }
+    setTimeout(function () {
+      const nowInMs = new Date().getTime()
+      setGameData({ ...gameData, startTime: nowInMs, isRoundStarted: true })
+    }, 3000)
   }
 
   const handleResetGameClick = () => {
@@ -148,6 +153,15 @@ const ReactionTimeTest: React.FC<Props> = () => {
       ) : (
         <InitialGameScreen />
       )}
+      <Container maxWidth="md">
+        {allTimes.length > 0 && (
+          <ul>
+            {allTimes.map((time, index) => (
+              <li key={index}>{time}</li>
+            ))}
+          </ul>
+        )}
+      </Container>
     </>
   )
 }
