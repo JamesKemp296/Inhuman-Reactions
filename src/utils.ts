@@ -1,4 +1,6 @@
 export const BLUE = "#2B87D1"
+export const RED = "#CE2635"
+export const GREEN = "#4BDB6A"
 export const LIGHT_BLUE = "#45b1ff"
 export const OFF_WHTIE = "#e5e8f4" // body color
 export const MINT_GREEN = "#2BD1B0"
@@ -88,3 +90,11 @@ export const cardSelectionArray = [
     link: GameLink.None,
   },
 ]
+
+// interfaces
+
+export interface ReactionTimeGameData {
+  startTime: number
+  isGameStarted: boolean
+  isRoundStarted: boolean
+}
