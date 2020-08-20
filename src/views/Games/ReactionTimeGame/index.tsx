@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { BLUE, ReactionTimeGameData } from "../../utils"
+import { BLUE, ReactionTimeGameData } from "../../../utils"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: 120,
     },
     [theme.breakpoints.up("sm")]: {
-      fontSize: 150,
+      fontSize: 140,
     },
     [theme.breakpoints.up("md")]: {
-      fontSize: 180,
+      fontSize: 160,
     },
   },
   title: {
@@ -72,9 +72,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.up("md")]: {
       fontSize: 24,
     },
-  },
-  getStartedButton: {
-    marginTop: theme.spacing(3),
   },
 }))
 
@@ -110,7 +107,7 @@ const ReactionTimeTest: React.FC<Props> = () => {
     })
     setAlltimes([...allTimes, difference])
     console.log({ allTimes })
-    if (allTimes.length === 4) {
+    if (allTimes.length >= 4) {
       setGameData({ ...gameData, isGameStarted: false })
       return
     }
@@ -167,29 +164,3 @@ const ReactionTimeTest: React.FC<Props> = () => {
 }
 
 export default ReactionTimeTest
-
-// <div>
-//   <h1>ReactionTimeTest!</h1>
-//   <h2>When square turns green, click!</h2>
-//   <div
-//     style={{
-//       height: 300,
-//       width: 500,
-//       backgroundColor: blockColor,
-//       marginLeft: "auto",
-//       marginRight: "auto",
-//       display: "block",
-//       marginBottom: 50,
-//     }}
-//   ></div>
-//   <button onClick={handleGameStartClick}>Click to start Game</button>
-//   <button onClick={handleGameClick}>Click When Turns Green!</button>
-
-//   {allTimes.length > 0 && (
-//     <ul>
-//       {allTimes.map((time, index) => (
-//         <li key={index}>{time}</li>
-//       ))}
-//     </ul>
-//   )}
-// </div>

@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { OFF_WHTIE, BLUE, ORANGE } from "./utils"
+import { OFF_WHTIE, BLUE, ORANGE, GameLink } from "./utils"
 
 // Material UI
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
@@ -11,7 +11,8 @@ import Home from "./views/Home"
 import Login from "./views/Login"
 import SignUp from "./views/SignUp"
 import Dashboard from "./views/Dashboard"
-import ReactionTimeTest from "./views/ReactionTimeTest"
+import ReactionTimeTest from "./views/Games/ReactionTimeGame"
+import NumbersTest from "./views/Games/NumbersGame"
 
 // Componetns
 import View from "./components/View"
@@ -50,9 +51,10 @@ const App: React.FC<Props> = () => {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={SignUp} />
               <PrivateRoute
-                path="/tests/reaction-time"
+                path={GameLink.Reaction}
                 component={ReactionTimeTest}
               />
+              <PrivateRoute path={GameLink.Numbers} component={NumbersTest} />
               <PrivateRoute component={Dashboard} path="/dashboard" />
             </Switch>
           </View>

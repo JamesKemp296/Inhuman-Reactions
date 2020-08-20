@@ -10,6 +10,23 @@ export const DARK_GREY = "#858585"
 
 export const SM_MEDIA_QUERY = "(max-width:600px)"
 
+// interfaces
+
+export interface ReactionTimeGameData {
+  startTime: number
+  isGameStarted: boolean
+  isRoundStarted: boolean
+}
+
+export interface NumbersGameData {
+  currentNumberLength: number
+  currentNumber: number
+  isGameStarted: boolean
+  isRoundStarted: boolean
+}
+
+// Enums
+
 export enum Icon {
   Speed,
   Target,
@@ -22,8 +39,11 @@ export enum Icon {
 
 export enum GameLink {
   Reaction = "/tests/reaction-time",
+  Numbers = "/tests/numbers",
   None = "",
 }
+
+// Information
 
 export const cardSelectionArray = [
   {
@@ -72,8 +92,8 @@ export const cardSelectionArray = [
     title: "Number Memory",
     subTitle: "Test your visual reflexes",
     icon: Icon.Numbers,
-    isAvailable: false,
-    link: GameLink.None,
+    isAvailable: true,
+    link: GameLink.Numbers,
   },
   {
     title: "Visual Memory",
@@ -83,18 +103,10 @@ export const cardSelectionArray = [
     link: GameLink.None,
   },
   {
-    title: "Reaction Time",
-    subTitle: "Test your visual reflexes",
-    icon: Icon.Speed,
+    title: "Word Memory",
+    subTitle: "How many words can you remember?",
+    icon: Icon.Keyboard,
     isAvailable: false,
     link: GameLink.None,
   },
 ]
-
-// interfaces
-
-export interface ReactionTimeGameData {
-  startTime: number
-  isGameStarted: boolean
-  isRoundStarted: boolean
-}

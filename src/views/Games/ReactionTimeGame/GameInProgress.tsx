@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { RED, GREEN, ReactionTimeGameData } from "../../utils"
+import { RED, GREEN, ReactionTimeGameData } from "../../../utils"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
@@ -49,10 +49,10 @@ const ReactionTimeTest: React.FC<Props> = ({
         fontSize: 120,
       },
       [theme.breakpoints.up("sm")]: {
-        fontSize: 150,
+        fontSize: 140,
       },
       [theme.breakpoints.up("md")]: {
-        fontSize: 180,
+        fontSize: 160,
       },
     },
     title: {
