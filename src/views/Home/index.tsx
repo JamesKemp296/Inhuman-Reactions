@@ -1,10 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 import { cardSelectionArray } from "../../utils"
 
 // Material UI
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
-import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
 
 // Components

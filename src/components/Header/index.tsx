@@ -18,7 +18,7 @@ const Header: React.FC<Props> = () => {
   const { currentUser } = useContext(AuthContext)
   const isSmallScreen = useMediaQuery(SM_MEDIA_QUERY)
 
-  const handleSignOut = () => {
+  const handleSignOut = (): void => {
     app.auth().signOut()
   }
 

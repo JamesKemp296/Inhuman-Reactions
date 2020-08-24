@@ -76,7 +76,7 @@ const GameSelectionCard: React.FC<Props> = ({
 }) => {
   const classes = useStyles()
 
-  const renderIcon = () => {
+  const renderIcon = (): React.ReactElement => {
     switch (icon) {
       case Icon.Speed:
         return <SpeedIcon className={classes.icon} />

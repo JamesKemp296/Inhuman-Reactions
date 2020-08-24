@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
 import { BLUE, NumbersGameData } from "../../../utils"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
-import Container from "@material-ui/core/Container"
 import Button from "@material-ui/core/Button"
 import LinearProgress from "@material-ui/core/LinearProgress"
 
@@ -87,19 +85,14 @@ const initialGameData: NumbersGameData = {
 const NumbersGame: React.FC<Props> = () => {
   const classes = useStyles()
   const [gameData, setGameData] = useState<NumbersGameData>(initialGameData)
-  const {
-    currentNumber,
-    currentNumberLength,
-    isGameStarted,
-    isRoundStarted,
-  } = gameData
+  const { currentNumber, isGameStarted } = gameData
 
-  const handleGameStartClick = () => {
+  const handleGameStartClick = (): void => {
     console.log("Game Started")
     setGameData({ ...gameData, isGameStarted: true })
   }
 
-  const InitialNumbersGameScreen = () => {
+  const InitialNumbersGameScreen = (): React.ReactElement => {
     return (
       <Box className={classes.gameContainer}>
         <FormatListNumberedIcon className={classes.icon} />
@@ -124,7 +117,7 @@ const NumbersGame: React.FC<Props> = () => {
     )
   }
 
-  const NumbersGameInProgress = () => {
+  const NumbersGameInProgress = (): React.ReactElement => {
     const [progress, setProgress] = useState<number>(0)
 
     useEffect(() => {
@@ -140,7 +133,7 @@ const NumbersGame: React.FC<Props> = () => {
           return newProgress
         })
       }, 100)
-      return () => {
+      return (): void => {
         clearInterval(timer)
       }
     }, [])

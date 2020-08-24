@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import React, { useEffect } from "react"
 import { RED, GREEN, ReactionTimeGameData } from "../../../utils"
 
 // Material UI
 import { makeStyles, Theme } from "@material-ui/core/styles"
 import Box from "@material-ui/core/Box"
 import Typography from "@material-ui/core/Typography"
-import Button from "@material-ui/core/Button"
 
 // Material UI Icons
 import SpeedIcon from "@material-ui/icons/Speed"
@@ -24,7 +22,7 @@ const ReactionTimeTest: React.FC<Props> = ({
   onGameClick,
   onResetGameClick,
 }) => {
-  const { startTime, isGameStarted, isRoundStarted } = gameData
+  const { isRoundStarted } = gameData
   const useStyles = makeStyles((theme: Theme) => ({
     gameContainer: {
       width: "100%",
@@ -94,6 +92,7 @@ const ReactionTimeTest: React.FC<Props> = ({
       const nowInMs = new Date().getTime()
       setGameData({ ...gameData, startTime: nowInMs, isRoundStarted: true })
     }, 3000)
+    // eslint-disable-next-line
   }, [])
 
   return (
