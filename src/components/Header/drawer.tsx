@@ -1,17 +1,14 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles"
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer"
-import Button from "@material-ui/core/Button"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
-import InboxIcon from "@material-ui/icons/MoveToInbox"
-import MailIcon from "@material-ui/icons/Mail"
 import Typography from "@material-ui/core/Typography"
 
 // Icons
@@ -55,7 +52,7 @@ const Drawer: React.FC<Props> = ({
 }) => {
   const classes = useStyles()
 
-  const renderNavListItems = () => {
+  const renderNavListItems = (): React.ReactElement => {
     if (currentUser) {
       return (
         <>

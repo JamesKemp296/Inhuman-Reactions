@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
 import { BLUE, ReactionTimeGameData } from "../../../utils"
 
 // Material UI
@@ -87,13 +86,13 @@ const ReactionTimeTest: React.FC<Props> = () => {
     initialGameData,
   )
   const [allTimes, setAlltimes] = useState<number[]>([])
-  const { startTime, isGameStarted, isRoundStarted } = gameData
+  const { startTime, isGameStarted } = gameData
 
-  const handleGameStartClick = () => {
+  const handleGameStartClick = (): void => {
     setGameData({ ...gameData, isGameStarted: true })
   }
 
-  const handleGameClick = () => {
+  const handleGameClick = (): void => {
     if (!isGameStarted) return
     const nowInMs = new Date().getTime()
     const difference = nowInMs - startTime
@@ -117,11 +116,11 @@ const ReactionTimeTest: React.FC<Props> = () => {
     }, 3000)
   }
 
-  const handleResetGameClick = () => {
+  const handleResetGameClick = (): void => {
     setGameData({ ...gameData, isRoundStarted: false, startTime: 0 })
   }
 
-  const InitialGameScreen = () => {
+  const InitialGameScreen = (): React.ReactElement => {
     return (
       <Box className={classes.gameContainer} onClick={handleGameStartClick}>
         <SpeedIcon className={classes.icon} />

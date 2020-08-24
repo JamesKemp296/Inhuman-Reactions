@@ -63,7 +63,7 @@ const DesktopHeader: React.FC<Props> = ({ currentUser, onSignOut }) => {
         </Button>
       </Box>
     )
-  }, [currentUser])
+  }, [currentUser, onSignOut, classes.navLink])
 
   const renderDashboardLink = useCallback((): React.ReactNode => {
     if (!currentUser) return null
@@ -72,7 +72,7 @@ const DesktopHeader: React.FC<Props> = ({ currentUser, onSignOut }) => {
         Dashboard
       </Button>
     )
-  }, [currentUser])
+  }, [currentUser, classes.navLink])
 
   return (
     <AppBar position="static" className={classes.root} elevation={2}>
